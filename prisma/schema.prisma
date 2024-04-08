@@ -1,0 +1,118 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+//checkin
+model User {
+  id Int   @id @default(autoincrement())
+  nom String
+  ape String
+  correo String
+  password String
+  confcont String
+  telefono String
+  fechnacim DateTime
+  sexo String
+}
+
+
+model Proveedor {
+  id_prove Int  @id @default(autoincrement())    
+  nom_ape String
+  direc String
+  tel String 
+  email String
+  tip_ident String
+  num_doc Int
+}
+
+model Empleado {
+   id_emple Int  @id @default(autoincrement())
+   nom_ape String
+   direc String
+   email String
+   tel String 
+   est String
+   cargo String
+}
+
+model Forma_pago {
+   id_pago Int   @id @default(autoincrement())
+   for_pago String
+}
+
+model Cliente {
+  id_client Int  @id @default(autoincrement())
+  nom_ape String
+  direc String
+  tel String
+  email String
+  tip_ident String
+  num_ident Int
+}
+
+model Producto {
+   id_prod Int   @id @default(autoincrement())
+   id_prove Int 
+   nom_prod String
+   descrip String
+   vr Int
+}
+
+
+
+model Gestion_ss {
+   id_gest Int   @id @default(autoincrement())
+   id_emple Int
+   nom_ape String
+   tip_ident String
+   num_ident Int
+   email String
+   tel String
+   direc String
+}
+
+model Reporte_fallas {
+   id_falla Int    @id @default(autoincrement())
+   fech_report DateTime
+   cuenrepo String
+   password String
+   dat_falla String
+}
+
+model Detalle_falla {
+  id_repor_falla Int  @id @default(autoincrement())
+  id_falla Int
+  id_emple Int
+}
+
+model Ventas {
+   id_vent Int   @id @default(autoincrement())
+   id_client Int
+   fech DateTime
+   id_pag Int
+   vr_total Int
+}
+
+model Detalle_ventas {
+   id_det_vent Int   @id @default(autoincrement())
+   id_vent Int 
+   id_prod Int
+   cant Int
+   vr_pag Int 
+   obser String
+}
+
+model Recarga {
+   id_recar Int   @id @default(autoincrement())
+   fech_recarg DateTime
+   vr Int
+}
